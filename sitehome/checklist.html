@@ -1,0 +1,293 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Questions</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Questions">
+    <meta name="author" content="Murad Karakaş">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/FastAPI.js"></script>
+
+    <!-- Styles  -->
+    <style>
+
+        .FormGroup {
+            display: inline;
+        }
+
+        [id^="time"] {
+            color: green;
+            font-size: 10pt;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        }
+    </style>
+
+    <!-- Scripts -->
+    <script type="text/javascript">
+
+        function setRegistryEndDate() {
+            var key = 'qre';
+            var value = $('#registryenddate').val();
+
+            // submitting form
+            $.ajax({
+                url: '/FastAPI/Public/?c=set&key=' + key + '&value=' + value,
+                type: 'GET',
+                beforeSend: function (request, settings) {
+                    start_time = new Date().getTime();
+                },
+                dataType: "json",
+                success: function () {
+                    $('#registryenddatesuccess').css('display', 'block');
+                    let request_time = new Date().getTime() - start_time;
+                    $('#timeRegistryEndDate').text(request_time + ' ms');
+                },
+                error: function (data) {
+                    $('#registryenddatefail').css('display', 'block');
+                }
+            });
+        }
+
+        function setGameStartDate() {
+            var key = 'qgs';
+            var value = $('#gamestartdate').val();
+
+            // submitting form
+            $.ajax({
+                url: '/FastAPI/Public/?c=set&key=' + key + '&value=' + value,
+                type: 'GET',
+                beforeSend: function (request, settings) {
+                    start_time = new Date().getTime();
+                },
+                dataType: "json",
+                success: function () {
+                    $('#gamestartdatesuccess').css('display', 'block');
+                    let request_time = new Date().getTime() - start_time;
+                    $('#timeGameStartDate').text(request_time + ' ms');
+                },
+                error: function (data) {
+                    $('#gamestartdatefail').css('display', 'block');
+                }
+            });
+        }
+
+        function setTimings() {
+            setRegistryStartDate();
+            setRegistryEndDate();
+            setGameStartDate();
+        }
+
+        function getRegistryStartDate() {
+            var key = 'qrs';
+            var lUrl = '/FastAPI/Public?c=get&key=' + key;
+            var val = '';
+
+            $.ajax({
+                type: 'GET',
+                url: lUrl,
+                dataType: 'json',
+                beforeSend: function (request, settings) {
+                    start_time = new Date().getTime();
+                },
+                success: function (data) {
+
+                    json = eval(data);
+                    if (typeof json.value !== undefined || json.value !== null)
+                        val = json.value;
+                    else
+                        val = 'not set';
+
+                    $('#registrystartdate').val(val);
+
+                    let request_time = new Date().getTime() - start_time;
+                    $('#timeRegistryStartDate').text(request_time + ' ms');
+                },
+                error: function (data) {
+                    alert('error in getRegistryStartDate');
+                }
+            });
+        }
+
+        function setRegistryStartDate() {
+            var key = 'qrs';
+            var value = $('#registrystartdate').val();
+
+            // submitting form
+            $.ajax({
+                url: '/FastAPI/Public/?c=set&key=' + key + '&value=' + value,
+                type: 'GET',
+                beforeSend: function (request, settings) {
+                    start_time = new Date().getTime();
+                },
+                dataType: "json",
+                success: function () {
+                    $('#registrystartdatesuccess').css('display', 'block');
+                    let request_time = new Date().getTime() - start_time;
+                    $('#timeRegistryStartDate').text(request_time + ' ms');
+                },
+                error: function (data) {
+                    $('#registrystartdatefail').css('display', 'block');
+                }
+            });
+        }
+
+        function getRegistryEndDate() {
+            var key = 'qre';
+            var lUrl = '/FastAPI/Public?c=get&key=' + key;
+            var val = '';
+
+            $.ajax({
+                type: 'GET',
+                url: lUrl,
+                dataType: 'json',
+                beforeSend: function (request, settings) {
+                    start_time = new Date().getTime();
+                },
+                success: function (data) {
+
+                    json = eval(data);
+                    if (typeof json.value !== undefined || json.value !== null)
+                        val = json.value;
+                    else
+                        val = 'not set';
+
+                    $('#registryenddate').val(val);
+
+                    let request_time = new Date().getTime() - start_time;
+                    $('#timeRegistryEndDate').text(request_time + ' ms');
+                },
+                error: function (data) {
+                    alert('error in getRegistryEndDate');
+                }
+            });
+        }
+
+        function getGameStartDate() {
+            var key = 'qgs';
+            var lUrl = '/FastAPI/Public?c=get&key=' + key;
+            var val = '';
+
+            $.ajax({
+                type: 'GET',
+                url: lUrl,
+                dataType: 'json',
+                beforeSend: function (request, settings) {
+                    start_time = new Date().getTime();
+                },
+                success: function (data) {
+
+                    json = eval(data);
+                    if (typeof json.value !== undefined || json.value !== null)
+                        val = json.value;
+                    else
+                        val = 'not set';
+
+                    $('#gamestartdate').val(val);
+
+                    let request_time = new Date().getTime() - start_time;
+                    $('#timeGameStartDate').text(request_time + ' ms');
+                },
+                error: function (data) {
+                    alert('error in getGameStartDate');
+                }
+            });
+        }
+
+        function getTimings() {
+            getRegistryStartDate();
+            getRegistryEndDate();
+            getGameStartDate();
+        }
+
+        $(document).ready(function () {
+
+        });
+    </script>
+</head>
+<body>
+
+    <!-- Top Menu -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+
+        <a class="navbar-brand" href="#">Live Quiz</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Ana Sayfa <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="questions.html">Sorular</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="timing.html">Zamanlama</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="checklist.html" style="color: red">Kontrol Listesi</a>
+                </li>
+                <!--li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+            </li-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Yönetim Paneli</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="tasks.html">Zamanlanmış Görevler</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+            </ul>
+            <!--form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Arama" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Arama</button>
+        </!form-->
+        </div>
+    </nav>
+
+    <br />
+    <br />
+    <br />
+
+    <!-- Main content -->
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-lg-2">
+                KATEGORİ
+            </div>
+            <div class="col-lg-5">
+                KONTROL
+            </div>
+            <div class="col-lg-5">
+                İŞLEM
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2">
+                Redis Sunumcu Ayarı
+            </div>
+            <div class="col-lg-5">
+                "redis.conf" dosyasında yer alan "timeout" parametresi 0 değerine sahip olmalıdır.
+            </div>
+            <div class="col-lg-5">
+                Bu değeri 0 olarak değiştirin ve sunumcuyu restart edin.
+            </div>
+        </div>
+    </main><!-- /.container -->
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+</html>

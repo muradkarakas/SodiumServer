@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Questions</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Questions">
+    <meta name="author" content="Murad Karakaş">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/FastAPI.js"></script>
+
+    <!-- Styles  -->
+    <style>
+
+        .FormGroup {
+            display: inline;
+        }
+
+        [id^="time"] {
+            color: green;
+            font-size: 10pt;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        }
+    </style>
+
+    <!-- Scripts -->
+    <script type="text/javascript">
+
+        function setRegistryEndDateCallback(data, _userCallbackParameters) {
+            $('#registryenddatefail').css('display', 'none');
+            if (data.httpStatus != "success") {
+                $('#registryenddatefail').css('display', 'block');
+                alert('Hata oluştu: ' + data.httpStatus);
+                return;
+            }
+
+            $('#registryenddatesuccess').css('display', 'block');
+            $('#timeRegistryEndDate').text(data.request_time + ' ms');
+        }
+
+        function setRegistryStartDateCallback(data, _userCallbackParameters) {
+            $('#registrystartdatefail').css('display', 'none');
+            if (data.httpStatus != "success") {
+                $('#registrystartdatefail').css('display', 'block');
+                alert('Hata oluştu: ' + data.httpStatus);
+                return;
+            }
+
+            $('#registrystartdatesuccess').css('display', 'block');
+            $('#timeRegistryStartDate').text(data.request_time + ' ms');
+        }
+
+        function setGameStartDateCallback(data, _userCallbackParameters) {
+            $('#gamestartdatefail').css('display', 'none');
+            if (data.httpStatus != "success") {
+                $('#gamestartdatefail').css('display', 'block');
+                alert('Hata oluştu: ' + data.httpStatus);
+                return;
+            }
+            $('#gamestartdatesuccess').css('display', 'block');
+            $('#timeGameStartDate').text(data.request_time + ' ms');
+        }
+
+        function setTimings() {
+            // setRegistryStartDate
+            _set('qrs', $('#registrystartdate').val(), setRegistryStartDateCallback, {});
+
+            // setRegistryEndDate
+            _set('qre', $('#registryenddate').val(), setRegistryEndDateCallback, {});
+
+            // setGameStartDate
+            _set('qgs', $('#gamestartdate').val(), setGameStartDateCallback, {});
+        }
+
+        function getRegistryStartDateCallback(data, _userCallbackParameters) {
+            $('#registrystartdate').val(data.value);
+            $('#timeRegistryStartDate').text(data.request_time + ' ms');
+        }
+
+        function getRegistryEndDateCallback(data, _userCallbackParameters) {
+            $('#registryenddate').val(data.value);
+            $('#timeRegistryEndDate').text(data.request_time + ' ms');
+        }
+
+        function getGameStartDateCallback(data, _userCallbackParameters) {
+            $('#gamestartdate').val(data.value);
+            $('#timeGameStartDate').text(data.request_time + ' ms');
+        }
+
+
+        function getTimings() {
+            // getRegistryStartDate
+            _get('qrs', getRegistryStartDateCallback, {});
+
+            // getRegistryEndDate
+            _get('qre', getRegistryEndDateCallback, {});
+
+            // getGameStartDate
+            _get('qgs', getGameStartDateCallback, {});
+        }
+
+        $(document).ready(function () {
+            getTimings();
+        });
+    </script>
+</head>
+<body>
+
+    <!-- Top Menu -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+
+        <a class="navbar-brand" href="#">Live Quiz</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Ana Sayfa <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="questions.html">Sorular</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="timing.html">Zamanlama</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="checklist.html" style="color: red">Kontrol Listesi</a>
+                </li>
+                <!--li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Yönetim Paneli</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="tasks.html">Zamanlanmış Görevler</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+            </ul>
+            <!--form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Arama" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Arama</button>
+            </!form-->
+        </div>
+    </nav>
+
+    <br />
+    <br />
+    <br />
+
+    <!-- Main content -->
+    <main role="main" class="container">
+
+        <form action="FastAPI/Public" method="get">
+
+            <div class="row" style="padding-top: 10px">
+
+                <div class="col-lg-3" style="text-align: right">
+                    <b>Kayıt Başlangıç Zamanı</b>
+                </div>
+
+                <div class="col-lg-7 FormGroup ">
+                    <input type="text" class="form-control" id="registrystartdate"
+                           onkeypress="$('#registrystartdatesuccess').css('display', 'none'); $('#registrystartdatefail').css('display', 'none');">
+                </div>
+                <div class="col-lg-1">
+                    <span id="timeRegistryStartDate"></span>
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="tick-box.png" width="20" height="25" style="display: none" id="registrystartdatesuccess" />
+                    <input type="image" src="fail-box.png" width="20" height="25" style="display: none" id="registrystartdatefail" />
+                </div>
+            </div>
+
+            <div class="row" style="padding-top: 10px">
+
+                <div class="col-lg-3" style="text-align: right">
+                    <b>Kayıt Bitiş Zamanı</b>
+                </div>
+
+                <div class="col-lg-7 FormGroup ">
+                    <input type="text" class="form-control" id="registryenddate"
+                           onkeypress="$('#registryenddatesuccess').css('display', 'none'); $('#registryenddatefail').css('display', 'none');">
+                </div>
+                <div class="col-lg-1">
+                    <span id="timeRegistryEndDate"></span>
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="tick-box.png" width="20" height="25" style="display: none" id="registryenddatesuccess" />
+                    <input type="image" src="fail-box.png" width="20" height="25" style="display: none" id="registryenddatefail" />
+                </div>
+            </div>
+
+            <div class="row" style="padding-top: 10px">
+
+                <div class="col-lg-3" style="text-align: right">
+                    <b>Oyun Başlangıç Zamanı</b>
+                </div>
+
+                <div class="col-lg-7 FormGroup ">
+                    <input type="text" class="form-control" id="gamestartdate"
+                           onkeypress="$('#gamestartdatesuccess').css('display', 'none'); $('#gamestartdatefail').css('display', 'none');">
+                </div>
+                <div class="col-lg-1">
+                    <span id="timeGameStartDate"></span>
+                </div>
+                <div class="col-lg-1">
+                    <input type="image" src="tick-box.png" width="20" height="25" style="display: none" id="gamestartdatesuccess" />
+                    <input type="image" src="fail-box.png" width="20" height="25" style="display: none" id="gamestartdatefail" />
+                </div>
+            </div>
+
+            <div class="row" style="padding-top: 10px">
+                <div class="col-lg-3" style="text-align: right">
+
+                </div>
+                <div class="col-lg-9">
+                    <input type="submit" class="btn btn-primary" name="submit" value="Kaydet" onclick="setTimings(); return false;" />
+                </div>
+            </div>
+
+        </form>
+    </main><!-- /.container -->
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+</html>
