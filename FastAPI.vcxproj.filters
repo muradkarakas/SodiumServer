@@ -47,9 +47,6 @@
     <ClCompile Include="DoReceiveRequests.c">
       <Filter>Source Files\core</Filter>
     </ClCompile>
-    <ClCompile Include="pch.c">
-      <Filter>Source Files\core</Filter>
-    </ClCompile>
     <ClCompile Include="yuarel.c">
       <Filter>Header Files</Filter>
     </ClCompile>
@@ -61,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="SetContextVariables.c">
       <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
