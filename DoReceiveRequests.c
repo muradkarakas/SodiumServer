@@ -41,7 +41,7 @@ DoReceiveRequests(
 		result = HttpReceiveHttpRequest(
 			hReqQueue,          // Req Queue
 			requestId,          // Req ID
-			HTTP_SEND_RESPONSE_FLAG_DISCONNECT,                   // Flags
+			HTTP_RECEIVE_REQUEST_FLAG_FLUSH_BODY,                   // Flags:  All of the entity bodies are copied along with the request headers. The pEntityChunks member of the HTTP_REQUEST structure points to the entity body. 
 			pRequest,           // HTTP request buffer
 			RequestBufferLength,// req buffer length
 			&bytesRead,         // bytes received

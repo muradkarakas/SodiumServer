@@ -30,4 +30,7 @@ typedef struct {
 	HTTP_REQUEST	*pRequest;
 	HTTP_RESPONSE	response;
 
+	char			* RequestBody;
+	ULONG 			  RequestBodySize;
+
 } HttpContext;
