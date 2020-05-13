@@ -119,7 +119,7 @@
       <DelayLoadDLLs>SodiumExtension.dll</DelayLoadDLLs>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(ProejctDir)$(Platform)\SodiumServer.exe C:\projects\Sodium\Setup</Command>
+      <Command>copy $(ProejctDir)$(Platform)\SodiumServer.exe C:\Sodium\Sodium-Setup</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -164,7 +164,7 @@
       <DelayLoadDLLs>SodiumExtension.dll</DelayLoadDLLs>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(ProejctDir)$(Platform)\SodiumServer.exe C:\projects\Sodium\Setup</Command>
+      <Command>copy $(ProejctDir)$(Platform)\SodiumServer.exe C:\Sodium\Sodium-Setup</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
