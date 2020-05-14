@@ -117,6 +117,7 @@
       <AdditionalLibraryDirectories>..\SodiumExtension\x64\;$(SolutionDir)redis-win-3.2.100\msvs\x64\Debug</AdditionalLibraryDirectories>
       <AdditionalDependencies>SodiumExtension.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <DelayLoadDLLs>SodiumExtension.dll</DelayLoadDLLs>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <PostBuildEvent>
       <Command>copy $(ProejctDir)$(Platform)\SodiumServer.exe C:\Sodium\Sodium-Setup</Command>
@@ -162,6 +163,7 @@
       <AdditionalLibraryDirectories>..\SodiumExtension\x64\;$(SolutionDir)redis-win-3.2.100\msvs\x64\Debug</AdditionalLibraryDirectories>
       <AdditionalDependencies>SodiumExtension.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <DelayLoadDLLs>SodiumExtension.dll</DelayLoadDLLs>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <PostBuildEvent>
       <Command>copy $(ProejctDir)$(Platform)\SodiumServer.exe C:\Sodium\Sodium-Setup</Command>
