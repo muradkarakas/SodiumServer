@@ -19,7 +19,7 @@
  
 
 const wchar_t 
-FastAPIVersion[] = L"0.0.7"    ;
+FastAPIVersion[] = L"0.0.8"    ;
 
 void
 PrintLogo() {
