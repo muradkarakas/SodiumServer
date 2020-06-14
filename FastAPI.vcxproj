@@ -114,9 +114,9 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\SodiumExtension\x64\;$(SolutionDir)redis-win-3.2.100\msvs\x64\Debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SodiumExtension.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <DelayLoadDLLs>SodiumExtension.dll</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>..\SodiumExtension\x64\;..\SodiumNativeExtension\x64\;$(SolutionDir)redis-win-3.2.100\msvs\x64\Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SodiumNativeExtension.lib;SodiumExtension.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <DelayLoadDLLs>SodiumNativeExtension.dll;SodiumExtension.dll</DelayLoadDLLs>
       <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <PostBuildEvent>
@@ -160,9 +160,9 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\SodiumExtension\x64\;$(SolutionDir)redis-win-3.2.100\msvs\x64\Debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SodiumExtension.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <DelayLoadDLLs>SodiumExtension.dll</DelayLoadDLLs>
+      <AdditionalLibraryDirectories>..\SodiumExtension\x64\;..\SodiumNativeExtension\x64\;$(SolutionDir)redis-win-3.2.100\msvs\x64\Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SodiumNativeExtension.lib;SodiumExtension.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <DelayLoadDLLs>SodiumNativeExtension.dll;SodiumExtension.dll</DelayLoadDLLs>
       <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
     <PostBuildEvent>
