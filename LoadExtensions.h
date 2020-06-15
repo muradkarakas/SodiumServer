@@ -31,12 +31,12 @@ extern ExtensionRegistry	extentionList[10];
 
 typedef struct {
 
-	wchar_t	 Current_Path[MAX_PATH];
-	wchar_t	 Current_FileName[MAX_PATH];
-	wchar_t	 Current_FileExt[MAX_PATH];
-	wchar_t	 Current_File[MAX_PATH];
-	wchar_t	 Current_Drive[MAX_PATH];
-	wchar_t	 Current_Directory[MAX_PATH];
+	wchar_t		Current_Path[MAX_PATH];
+	wchar_t		Current_FileName[MAX_PATH];
+	wchar_t		Current_FileExt[MAX_PATH];
+	wchar_t		Current_File[MAX_PATH];
+	wchar_t		Current_Drive[MAX_PATH];
+	wchar_t		Current_Directory[MAX_PATH];
 	wchar_t		Current_Full_Path[MAX_PATH];
 		
 	HANDLE			hReqQueue;
